@@ -10,7 +10,6 @@ import numpy as np
 import pandas as pd
 import datetime as dt
 
-
 #################################################
 # Database Setup
 #################################################
@@ -23,8 +22,6 @@ Base.prepare(engine)
 # Save references to each table
 Measurement = Base.classes.measurement
 Station = Base.classes.station
-
-
 
 #################################################
 # Flask Setup
@@ -91,9 +88,6 @@ def precipitation():
     # Create our session (link)
     session = Session(engine)
 
-    # Design a query to retrieve the last 12 months of precipitation data
-    # Starting from the most recent data point in the database. 
-
     #get most recent date and date one year ago
     recent_date = get_recent_date()                 ### def on line 39 ###
     one_year_string = get_year_ago(recent_date)     ### def on line 47 ###
@@ -145,6 +139,7 @@ def stations():
         station_list.append(station_dict)
     return jsonify(station_list)
 
+#route to return 12 months of temp data
 @app.route("/api/v1.0/tobs")
 def tobs():
     # Design a query to retrieve the last 12 months of precipitation data
@@ -179,6 +174,7 @@ def tobs():
         station_data_list.append(station_data_dict)
     return jsonify(station_data_list)
 
+# route to return temp data from start date to end of dataset
 @app.route("/api/v1.0/<start_date>")
 def one_date(start_date):
     end_date = get_recent_date()
@@ -202,6 +198,7 @@ def one_date(start_date):
         date_range_list.append(date_range_dict)
     return jsonify(date_range_list)
 
+#route to return temp data for date range
 @app.route("/api/v1.0/<start_date>/<end_date>")
 def two_date(start_date,end_date):
     session = Session(engine)
