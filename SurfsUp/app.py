@@ -89,8 +89,8 @@ def precipitation():
     session = Session(engine)
 
     #get most recent date and date one year ago
-    recent_date = get_recent_date()                 ### def on line 39 ###
-    one_year_string = get_year_ago(recent_date)     ### def on line 47 ###
+    recent_date = get_recent_date()                 ### def on line 36 ###
+    one_year_string = get_year_ago(recent_date)     ### def on line 44 ###
 
     # Perform a query to retrieve the data and precipitation scores
     prcp_results = session.query(Measurement.date, Measurement.prcp).\
@@ -124,6 +124,7 @@ def stations():
                             func.avg(Measurement.tobs)).\
                         filter(Measurement.station == Station.station).\
                         group_by(Measurement.station).all()
+    session.close()
 
     station_list = []           #empty list for storing dicts
     for station, name, latitude, longitude, elevation, min_prcp, max_prcp, avg_prcp, min_temp, max_temp,avg_temp in stations:
@@ -186,6 +187,7 @@ def one_date(start_date):
                         filter(Measurement.date >= start_date).\
                         group_by(Measurement.date).\
                         order_by(Measurement.date)
+    session.close()
     # add data to list of dictionaries
     date_range_list = []
     for date, tmin, tavg, tmax in temp_data:
@@ -208,6 +210,7 @@ def two_date(start_date,end_date):
                         filter(Measurement.date >= start_date).\
                         group_by(Measurement.date).\
                         order_by(Measurement.date)
+    session.close()
     # add data to list of dicts
     date_range_list = []
     for date, tmin, tavg, tmax in temp_data:
@@ -219,7 +222,6 @@ def two_date(start_date,end_date):
 
         date_range_list.append(date_range_dict)
     return jsonify(date_range_list)
-
 ### run the app if main is called ###
 if __name__ == "__main__":
     app.run(debug=True)
