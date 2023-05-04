@@ -61,22 +61,22 @@ def home():
     #return all avaliable routes to app
     return (
         f"Welcome to Hawaii Climate API! <br/>"
-        '<br/>'     #skip row
-        '<br/>'     #skip row
+        '<br/>'     #skip line
+        '<br/>'     #skip line
         f"Available Routes:<br/>"
-        '<br/>'     #skip row
+        '<br/>'     #skip line
         f"---Route: /api/v1.0/precipitation <br/>"
         f"---Description: Displays all precipitation data from 2017-08-23 to 2018-08-23 <br/>"
-        '<br/>'     #skip row
+        '<br/>'     #skip line
         f"---Route: /api/v1.0/stations <br/>"
         f"---Description: Displays list of all Stations <br/>"
-        '<br/>'     #skip row
+        '<br/>'     #skip line
         f"---Route: /api/v1.0/tobs <br/>"
         f"---Description: Displays dates and temperature observations from most active station for the previous year <br/>"
-        '<br/>'     #skip row
+        '<br/>'     #skip line
         f"---Route: /api/v1.0/YYYY-MM-DD ** NOT FINISHED: NEEDS CHECK FOR DATE **<br/>" 
         f"---Description: Displays min, max, and avg temperatures for date provided through last date in dataset (date required as end arguement e.g. 2017-07-23) <br/>"
-        '<br/>'     #skip row
+        '<br/>'     #skip line
         f"---Route: /api/v1.0/YYYY-MM-DD/YYYY-MM-DD ** NOT FINISHED: NEEDS CHECK FOR DATE **<br/>" 
         f"---Description: Displays min, mac, and avg temperatures from start date to end date (start date and end date required as end arguement e.g. 2017-06-23/2017-07-23) <br/>"
 
